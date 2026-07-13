@@ -9,8 +9,8 @@ COPY src ./src
 # Compile and package the application into a jar file
 RUN mvn clean package -DskipTests
 
-# Stage 2: Run the application using a lightweight JRE
-FROM eclipse-temurin:17-jre-alpine
+# Stage 2: Run the application using a standard JRE (Debian-based to avoid SSL issues with MongoDB Atlas)
+FROM eclipse-temurin:17-jre
 WORKDIR /app
 
 # Copy the built jar from Stage 1
